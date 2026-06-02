@@ -2,6 +2,7 @@ import streamlit as st
 
 from modules.auth import login
 from modules.dashboard import render
+from modules.employees import render as employee_render
 
 st.set_page_config(
     page_title="Onetechmated ERP Pro",
@@ -50,3 +51,6 @@ else:
 
     if page == "Dashboard":
         render()
+
+    elif page == "Employees":
+        employee_render()
