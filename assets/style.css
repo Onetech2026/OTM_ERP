@@ -1,37 +1,145 @@
-/* Main App */
+/* =========================
+   ONETECHMATED ERP PRO
+   PREMIUM SaaS THEME
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
 .stApp {
-    background-color: #F8FAFC;
+    background: #f8fafc;
 }
 
 /* Sidebar */
+
 section[data-testid="stSidebar"] {
-    background-color: #111827;
+    background: #0f172a;
+    border-right: 1px solid rgba(255,255,255,.05);
 }
 
 section[data-testid="stSidebar"] * {
     color: white;
 }
 
-/* KPI Cards */
-.metric-card {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    border: 1px solid #E5E7EB;
-}
+/* Titles */
 
-/* Page Titles */
 .main-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #111827;
+    font-size: 36px;
+    font-weight: 800;
+    color: #0f172a;
 }
 
 /* Glass Cards */
+
 .glass-card {
     background: rgba(255,255,255,.9);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow:
+      0 10px 30px rgba(15,23,42,.08);
+    border: 1px solid rgba(255,255,255,.6);
+}
+
+/* KPI Cards */
+
+.kpi-card {
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+
+    transition:.3s ease;
+
+    border:1px solid #e5e7eb;
+}
+
+.kpi-card:hover {
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 20px 40px rgba(15,23,42,.12);
+}
+
+.kpi-label {
+
+    font-size:14px;
+
+    color:#64748b;
+}
+
+.kpi-value {
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#0f172a;
+}
+
+/* Employee Cards */
+
+.employee-card {
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:24px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+    0 10px 25px rgba(15,23,42,.08);
+
+    transition:.3s;
+}
+
+.employee-card:hover {
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 18px 35px rgba(15,23,42,.12);
+}
+
+/* Status Badge */
+
+.badge-active {
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+.badge-inactive {
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
 }
