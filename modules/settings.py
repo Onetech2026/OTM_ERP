@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 import os
+from modules.audit import log_action
 
 SETTINGS_FILE = "data/settings.json"
 
@@ -26,8 +27,8 @@ def save_settings(settings):
 
     with open(SETTINGS_FILE, "w") as f:
         json.dump(settings, f, indent=4)
-
-
+        
+        
 def render():
 
     st.title("⚙ Company Settings")
@@ -74,5 +75,10 @@ def render():
             "website": website,
             "address": address
         })
+        log_action(
+            st.session_state.username,
+            "Updated Settings",
+            company_name
+        )
 
         st.success("Settings Saved Successfully")

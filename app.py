@@ -4,6 +4,7 @@ from modules.auth import login
 from modules.dashboard import render
 from modules.employees import render as employee_render
 from modules.settings import render as settings_render
+from modules.audit import render as audit_render
 
 st.set_page_config(
     page_title="Onetechmated ERP Pro",
@@ -58,3 +59,6 @@ else:
         
     elif page == "Settings":
         settings_render()
+    
+    elif page == "Audit":
+        audit_render()
