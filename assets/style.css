@@ -1,0 +1,37 @@
+/* Main App */
+.stApp {
+    background-color: #F8FAFC;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #111827;
+}
+
+section[data-testid="stSidebar"] * {
+    color: white;
+}
+
+/* KPI Cards */
+.metric-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    border: 1px solid #E5E7EB;
+}
+
+/* Page Titles */
+.main-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Glass Cards */
+.glass-card {
+    background: rgba(255,255,255,.9);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}

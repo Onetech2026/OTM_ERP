@@ -1,0 +1,33 @@
+TransactionID,Date,Type,Category,Amount,Description,PaymentMode,Status,LinkedTo,Reference,Notes,CreatedAt
+TRX0001,2025-08-22,Expense,Office expense,10000.0,Wix Hosting and Maintenance ,Bank Transfer,Completed,,,,2025-10-15 22:40:45
+TRX0002,2025-10-08,Expense,Invoice Payment,7903.0,Outlook Emails for team,Bank Transfer,Completed,,,,2025-10-15 22:44:13
+TRX0003,2025-08-22,Expense,Invoice Payment,2238.0,Outlook Emails for team,Bank Transfer,Completed,,,,2025-10-15 22:46:16
+TRX0004,2025-10-05,Expense,Asset Purchase,23000.0,Laptop for Irfan,Bank Transfer,Completed,,,,2025-10-15 22:47:23
+TRX0005,2025-10-31,Expense,Salary Payment,198000.0,October Salaries paid. Includes TDS amount as well.,Bank Transfer,Completed,,,,2025-11-20 01:18:20
+TRX0006,2025-12-03,Income,Invoice Payment,707397.6,Received for 1st invoice of 8000$.,Bank Transfer,Completed,,,,2025-12-03 17:24:42
+TRX0007,2025-12-03,Expense,Salary Payment,198000.0,November salaries paid. Including TDS,Bank Transfer,Completed,,,,2025-12-03 17:26:35
+TRX0008,2025-12-04,Expense,Salary Payment,100000.0,Pruthvi share no TDS deducted,Bank Transfer,Completed,,,,2025-12-19 15:34:40
+TRX0009,2025-12-04,Expense,Salary Payment,100000.0,Shiva share no TDS deducted,Bank Transfer,Completed,,,,2025-12-19 15:34:53
+TRX0010,2025-12-22,Income,Invoice Payment,702200.0,Actual Invoice value $6400/- We have received for $7995/-. This needs to be adjusted in December invoice after talking to them,Bank Transfer,Completed,,,,2025-12-30 12:17:15
+TRX0011,2025-12-30,Expense,Salary Payment,228000.0,"Salaries paid to Irfan, Krushi and Umar. Includes TDS",Bank Transfer,Completed,,,,2025-12-30 12:19:16
+TRX0012,2025-12-30,Expense,Salary Payment,100000.0,Shiva share no TDS deducted,Bank Transfer,Completed,,,,2025-12-30 12:29:29
+TRX0013,2025-12-30,Expense,Salary Payment,100000.0,Pruthvi share no TDS deducted,Bank Transfer,Completed,,,,2025-12-30 12:29:39
+TRX0014,2026-01-10,Expense,Office Supplies,3526.0,HR email,Bank Transfer,Completed,,,,2026-01-10 00:20:17
+TRX0015,2026-01-22,Expense,Travel,11375.0,,Bank Transfer,Completed,,,,2026-02-02 17:00:55
+TRX0016,2026-02-01,Expense,Salary Payment,228000.0,"Salaries for Irfan, Krushi and Umar. Including TDS",Bank Transfer,Completed,,,,2026-02-02 17:02:59
+TRX0017,2026-02-01,Income,Invoice Payment,489802.2,December invoice paid,Bank Transfer,Completed,,,,2026-02-02 17:04:19
+TRX0018,2026-02-01,Expense,Asset Purchase,23000.0,Laptop for Ajay,Bank Transfer,Completed,,,,2026-02-02 18:11:12
+TRX0019,2026-02-02,Expense,Other,23600.0,Payment to Kiran for ITR filing  FY 25-26,Bank Transfer,Completed,,,,2026-02-07 22:58:41
+TRX0020,2026-02-02,Expense,Salary Payment,200125.0,"Paid 25k each to Thada Nirmala, Thada Venkataramana Reddy, Avanigadda Bharani, Veluri Avinash, Nikhil, Nikhil's Brother, Thada Soumya and to onetech credit card bill",Bank Transfer,Completed,,,,2026-02-11 15:02:26
+TRX0021,2026-02-05,Expense,Invoice Payment,2800.0,Laptop Shipping,Bank Transfer,Completed,,,,2026-03-03 16:22:12
+TRX0022,2026-03-09,Income,Invoice Payment,1687771.95,both for Jan and Feb received,Bank Transfer,Completed,,,,2026-03-09 14:57:54
+TRX0023,2026-03-09,Expense,Salary Payment,320500.0,"Salary for Irfan, Krushi, Umar & Ajay. Including TDS nd Internet 3000",Bank Transfer,Completed,,,,2026-03-09 14:59:18
+TRX0024,2026-03-23,Expense,Salary Payment,200000.0,paid to 25k to 8 accounts for shiva and pruthvi,Bank Transfer,Completed,,,,2026-03-23 15:15:48
+TRX0025,2026-03-27,Expense,Asset Purchase,50000.0,Krushi's Laptop,Bank Transfer,Completed,,,,2026-03-31 09:57:56
+TRX0026,2026-03-31,Expense,Salary Payment,320500.0,"Salary for Irfan, Krushi, Umar & Ajay. Including TDS and Internet 3000",Bank Transfer,Completed,,,,2026-03-31 16:26:07
+TRX0027,2026-03-31,Expense,Salary Payment,173000.0,Salary for Pruthvi and Shiva. Transferred to others.  ,Bank Transfer,Completed,,,,2026-03-31 16:27:24
+TRX0028,2026-04-20,Income,Invoice Payment,1035548.0,March Payment received,Bank Transfer,Completed,,,,2026-04-30 10:45:20
+TRX0029,2026-04-30,Expense,Salary Payment,80000.0,TDS Paid for year end closing balance,Bank Transfer,Completed,,,,2026-05-10 19:24:50
+TRX0030,2026-04-30,Expense,Salary Payment,289250.0,Salries paid for all including internet but TDS is pending. 31750 needs to be paid,Bank Transfer,Completed,,,,2026-05-10 19:28:45
+TRX0031,2026-05-01,Expense,Salary Payment,200000.0,Salaries for Pruthvi and Shiva,Bank Transfer,Completed,,,,2026-05-10 19:29:18
+TRX0032,2026-05-19,Income,Invoice Payment,993542.15,April Invoice Payment,Bank Transfer,Completed,None,,,2026-05-19 01:36:36
