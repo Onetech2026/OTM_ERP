@@ -1,0 +1,9 @@
+Invoice No,Status,Invoice Amount,Received Amount,Notes,Paid Amount,Payment Date
+202511001,Paid,8000,707397.0,,0,
+202512001,Paid,6400,702200.0,Received for usd $7995 instead of $6400,0,
+202601001,Paid,7040,489802.2,Received for usd $5435 instead of $7040. and djusted,0,
+202602001,Paid,8280,1687771.95,Received for usd $8280 and $10360,0,
+202603001,Paid,10360,0.0,Received for usd $8280 and $10360 in last check,0,
+202604001,Paid,11320,1035548.8,,0,
+202605001,Paid,10560,993542.15,,0,
+202606001,Paid,10080,943020.0,,0,2026-06-10

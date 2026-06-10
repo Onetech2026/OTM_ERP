@@ -30,4 +30,9 @@ TRX0028,2026-04-20,Income,Invoice Payment,1035548.0,March Payment received,Bank 
 TRX0029,2026-04-30,Expense,Salary Payment,80000.0,TDS Paid for year end closing balance,Bank Transfer,Completed,,,,2026-05-10 19:24:50
 TRX0030,2026-04-30,Expense,Salary Payment,289250.0,Salries paid for all including internet but TDS is pending. 31750 needs to be paid,Bank Transfer,Completed,,,,2026-05-10 19:28:45
 TRX0031,2026-05-01,Expense,Salary Payment,200000.0,Salaries for Pruthvi and Shiva,Bank Transfer,Completed,,,,2026-05-10 19:29:18
-TRX0032,2026-05-19,Income,Invoice Payment,993542.15,April Invoice Payment,Bank Transfer,Completed,None,,,2026-05-19 01:36:36
+TRX0032,2026-05-19,Income,Invoice Payment,993542.15,April Invoice Payment,Bank Transfer,Completed,,,,2026-05-19 01:36:36
+TRX0033,06/10/2026,Income,Invoice Payment,943020.0,,Bank Transfer,Completed,202606001.0,202606001.0,,06/10/2026 12:23
+TRX0034,06/10/2026,Expense,Salary Payment,31750.0,May 1st TDS,Bank Transfer,Completed,,,,06/10/2026 12:25
+TRX0035,06/10/2026,Expense,Salary Payment,348000.0,June salary with TDS nd internet charges 1500+1500+500,Bank Transfer,Completed,,,,06/10/2026 12:26
+TRX0036,06/10/2026,Expense,Salary Payment,200000.0,june shiva and pruthvi,Bank Transfer,Completed,,,,06/10/2026 12:26
+TRX0037,06/10/2026,Expense,Hardware & Equipment,22500.0,Laptop for new full stock guy,Bank Transfer,Completed,,,,06/10/2026 12:28

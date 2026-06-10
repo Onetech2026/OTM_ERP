@@ -64,6 +64,30 @@ def render():
         "Address",
         settings["address"]
     )
+    
+    city = st.text_input(
+        "City",
+        settings.get(
+            "city",
+            ""
+        )
+    )
+
+    country = st.text_input(
+        "Country",
+        settings.get(
+            "country",
+            ""
+        )
+    )
+
+    zip_code = st.text_input(
+        "Zip Code",
+        settings.get(
+            "zip_code",
+            ""
+        )
+    )
 
     if st.button("Save Settings"):
 
@@ -73,7 +97,10 @@ def render():
             "phone": phone,
             "email": email,
             "website": website,
-            "address": address
+            "address": address,
+            "city": city,
+            "country": country,
+            "zip_code": zip_code    
         })
         log_action(
             st.session_state.username,

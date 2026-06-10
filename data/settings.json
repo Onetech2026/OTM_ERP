@@ -4,5 +4,8 @@
     "phone": "+91-9441940532",
     "email": "hr@onetechmatedsolutions.com",
     "website": "onetechmatedsolutions.com",
-    "address": "LIG 11, HUDA Colony, Mehdipatnam, Hyderabad, India, 500028"
+    "address": "LIG 11, HUDA Colony, Mehdipatnam",
+    "city": "Hyderabad",
+    "country": "India",
+    "zip_code": "500028"
 }
