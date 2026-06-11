@@ -4,9 +4,8 @@ import pandas as pd
 import streamlit as st
 
 from modules.auth import create_user, delete_user, load_users, update_user
-from modules.ui import page_header
 
-page_header("Dashboard")
+st.markdown("<h1 style='margin-bottom:0'>Dashboard</h1>", unsafe_allow_html=True)
 
 def render():
 
