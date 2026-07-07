@@ -11,7 +11,39 @@ EMPLOYMENT_TYPES = ["Contract", "Full Time", "Full-time", "Intern"]
 def load_employees():
     if not os.path.exists(EMPLOYEE_FILE):
         return pd.DataFrame()
-    return pd.read_csv(EMPLOYEE_FILE)
+    df = pd.read_csv(EMPLOYEE_FILE)
+
+    # Ensure commonly-updated contact and identifier columns are strings
+    string_cols = [
+        "EmployeeID",
+        "Phone",
+        "AccountNumber",
+        "IFSCCode",
+        "PAN",
+        "Aadhar",
+        "FullName",
+        "Email",
+    ]
+
+    numeric_cols = [
+        "CTC",
+        "BasicPay",
+        "HRA",
+        "TravelAllowance",
+        "MedicalAllowance",
+        "InternetAllowance",
+        "SpecialAllowance",
+    ]
+
+    for col in string_cols:
+        if col in df.columns:
+            df[col] = df[col].fillna("").astype(str)
+
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+
+    return df
 
 
 def save_employees(df):
