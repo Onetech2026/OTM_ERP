@@ -56,7 +56,7 @@ def render():
 
     df = load_employees()
     # Defensive coercion for in-memory DataFrame to avoid dtype assignment issues
-    for _col in [
+    string_cols = [
         "EmployeeID",
         "Phone",
         "AccountNumber",
@@ -65,11 +65,23 @@ def render():
         "Aadhar",
         "FullName",
         "Email",
-    ]:
-        if _col in df.columns:
-            df[_col] = df[_col].astype(str)
-
-    for _col in [
+        "DOB",
+        "Gender",
+        "CurrentAddress",
+        "PermanentAddress",
+        "EmergencyContactName",
+        "EmergencyRelation",
+        "EmergencyPhone",
+        "Designation",
+        "JoiningDate",
+        "EmploymentType",
+        "ReportingManager",
+        "WorkLocation",
+        "EmployeeStatus",
+        "BankName",
+        "Branch",
+    ]
+    numeric_cols = [
         "CTC",
         "BasicPay",
         "HRA",
@@ -77,7 +89,17 @@ def render():
         "MedicalAllowance",
         "InternetAllowance",
         "SpecialAllowance",
-    ]:
+        "PFDeduction",
+        "ESIDeduction",
+        "TDSDeduction",
+        "OtherDeductions",
+    ]
+
+    for _col in string_cols:
+        if _col in df.columns:
+            df[_col] = df[_col].fillna("").astype("string")
+
+    for _col in numeric_cols:
         if _col in df.columns:
             df[_col] = pd.to_numeric(df[_col], errors="coerce").fillna(0)
 
@@ -321,15 +343,16 @@ def render():
                 if not full_name.strip():
                     st.error("Employee name is required.")
                 else:
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "FullName"] = full_name
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Phone"] = phone
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Email"] = email
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Designation"] = designation
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "EmploymentType"] = employment_type
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "ReportingManager"] = manager
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "WorkLocation"] = work_location
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "EmployeeStatus"] = status
-                    df.loc[df["EmployeeID"].astype(str) == employee_id, "CTC"] = ctc
+                    mask = df["EmployeeID"].astype(str) == employee_id
+                    df.loc[mask, "FullName"] = str(full_name)
+                    df.loc[mask, "Phone"] = str(phone)
+                    df.loc[mask, "Email"] = str(email)
+                    df.loc[mask, "Designation"] = str(designation)
+                    df.loc[mask, "EmploymentType"] = str(employment_type)
+                    df.loc[mask, "ReportingManager"] = str(manager)
+                    df.loc[mask, "WorkLocation"] = str(work_location)
+                    df.loc[mask, "EmployeeStatus"] = str(status)
+                    df.loc[mask, "CTC"] = float(ctc)
 
                     save_employees(df)
                     try:
