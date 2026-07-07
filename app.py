@@ -1,4 +1,5 @@
 import time
+import os
 
 import streamlit as st
 
@@ -55,10 +56,15 @@ if not st.session_state.logged_in:
 
 else:
 
-    st.sidebar.image(
-        "assets/logo.png",
-        width=120
-    )
+    # Load logo in a case-insensitive way (Linux is case-sensitive)
+    logo_path = None
+    for candidate in ("assets/logo.png", "assets/Logo.png", "assets/logo.PNG"):
+        if os.path.exists(candidate):
+            logo_path = candidate
+            break
+
+    if logo_path:
+        st.sidebar.image(logo_path, width=120)
 
     st.sidebar.markdown(
     """

@@ -147,15 +147,19 @@ def login():
             unsafe_allow_html=True
         )
 
-        try:
+        # Show logo if present (case-insensitive check for deployed Linux hosts)
+        logo_path = None
+        for candidate in ("assets/logo.png", "assets/Logo.png", "assets/logo.PNG"):
+            if os.path.exists(candidate):
+                logo_path = candidate
+                break
 
-            st.image(
-                "assets/logo.png",
-                width=120
-            )
-
-        except:
-            pass
+        if logo_path:
+            try:
+                st.image(logo_path, width=120)
+            except Exception:
+                # If Streamlit can't load the image for any reason, continue without failing
+                pass
 
         st.markdown(
             """
