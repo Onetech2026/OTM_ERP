@@ -10,6 +10,7 @@ from modules.audit import render as audit_render
 from modules.finance import render as finance_render
 from modules.invoices import render as invoices_render
 from modules.invoice_create import render as invoice_create_render
+from modules.payroll import render as payroll_render
 
 
 

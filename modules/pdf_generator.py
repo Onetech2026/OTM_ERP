@@ -5,11 +5,16 @@ import pandas as pd
 import os
 from fpdf import FPDF
 import json
-import win32com.client
-import pythoncom
 import tempfile
 from io import BytesIO
 import plotly.express as px
+
+try:
+    import win32com.client
+    import pythoncom
+except ImportError:
+    win32com = None
+    pythoncom = None
 
 # --- Constants ---
 DATA_DIR = "data"
@@ -68,37 +73,41 @@ def save_invoice(invoice):
     invoices.to_csv(INVOICE_FILE, index=False)
 
 def send_email_outlook(receiver_email, subject, body, pdf_path):
+    if win32com is None or pythoncom is None:
+        st.warning("Outlook email integration is unavailable on this platform. PDF generation still works.")
+        return False
+
     try:
         # Initialize COM for Outlook
         pythoncom.CoInitialize()
-        
+
         # Verify PDF exists
         if not os.path.exists(pdf_path):
             st.error(f"PDF file not found at: {pdf_path}")
             return False
-            
+
         # Create Outlook application object
         outlook = win32com.client.Dispatch('Outlook.Application')
-        
+
         # Create a new mail item
         mail = outlook.CreateItem(0)  # 0 = olMailItem
-        
+
         # Set email properties
         mail.To = receiver_email
         mail.Subject = subject
         mail.Body = body
-        
+
         # Add attachment - use absolute path
         absolute_path = os.path.abspath(pdf_path)
         mail.Attachments.Add(absolute_path)
-        
+
         # Send the email
         mail.Send()
-        
+
         # Clean up
         pythoncom.CoUninitialize()
         return True
-        
+
     except Exception as e:
         st.error(f"Failed to send email via Outlook: {str(e)}")
         return False
