@@ -55,6 +55,32 @@ def render():
     st.title("👥 Employee Management")
 
     df = load_employees()
+    # Defensive coercion for in-memory DataFrame to avoid dtype assignment issues
+    for _col in [
+        "EmployeeID",
+        "Phone",
+        "AccountNumber",
+        "IFSCCode",
+        "PAN",
+        "Aadhar",
+        "FullName",
+        "Email",
+    ]:
+        if _col in df.columns:
+            df[_col] = df[_col].astype(str)
+
+    for _col in [
+        "CTC",
+        "BasicPay",
+        "HRA",
+        "TravelAllowance",
+        "MedicalAllowance",
+        "InternetAllowance",
+        "SpecialAllowance",
+    ]:
+        if _col in df.columns:
+            df[_col] = pd.to_numeric(df[_col], errors="coerce").fillna(0)
+
     if df.empty:
         st.warning("Employee database not found or is empty. Add employees first.")
         return
