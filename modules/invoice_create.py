@@ -8,32 +8,35 @@ from modules.pdf_generator import generate_pdf
 INVOICE_FILE = "data/invoices.csv"
 
 def get_next_invoice_number():
+    today = date.today()
+    prefix = today.strftime("%Y%m")
+    default_number = f"{prefix}001"
 
     if not os.path.exists(INVOICE_FILE):
-        return "202606001"
-
-    df = pd.read_csv(INVOICE_FILE)
-
-    df = df.dropna(
-        subset=["Invoice No"]
-    )
-
-    if len(df) == 0:
-        return "202606001"
+        return default_number
 
     try:
+        df = pd.read_csv(INVOICE_FILE)
+    except Exception:
+        return default_number
 
-        last_invoice = str(
-            df["Invoice No"].iloc[-1]
-        )
+    df = df.dropna(subset=["Invoice No"])
 
-        return str(
-            int(last_invoice) + 1
-        )
+    if df.empty:
+        return default_number
 
-    except:
+    try:
+        invoice_numbers = df["Invoice No"].astype(str)
+        matching_numbers = invoice_numbers[invoice_numbers.str.startswith(prefix, na=False)]
 
-        return "202606001"
+        if matching_numbers.empty:
+            return default_number
+
+        last_invoice = matching_numbers.iloc[-1]
+        last_seq = int(str(last_invoice)[-3:]) if str(last_invoice)[-3:].isdigit() else 0
+        return f"{prefix}{last_seq + 1:03d}"
+    except Exception:
+        return default_number
 
 def load_company_settings():
 
