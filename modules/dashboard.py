@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 import streamlit as st
+import time
 
 from modules.auth import create_user, delete_user, load_users, update_user
 
@@ -150,6 +151,10 @@ def render():
             if st.button("Create User", use_container_width=True):
                 try:
                     create_user(new_username, new_password, new_role)
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
                     st.success(f"User '{new_username}' created successfully.")
                     st.rerun()
                 except ValueError as exc:
@@ -188,6 +193,10 @@ def render():
             if st.button("Save Changes", use_container_width=True):
                 try:
                     update_user(manage_user, password=new_password or None, role=edit_role, status=edit_status)
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
                     st.success(f"Updated user '{manage_user}'.")
                     st.rerun()
                 except ValueError as exc:
@@ -197,6 +206,10 @@ def render():
             if st.button("Delete User", use_container_width=True):
                 try:
                     delete_user(manage_user)
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
                     st.warning(f"Deleted user '{manage_user}'.")
                     st.rerun()
                 except Exception as exc:
@@ -206,6 +219,10 @@ def render():
             if st.button("Activate", use_container_width=True):
                 try:
                     update_user(manage_user, status="Active")
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
                     st.success(f"Activated '{manage_user}'.")
                     st.rerun()
                 except ValueError as exc:
@@ -214,6 +231,10 @@ def render():
             if st.button("Deactivate", use_container_width=True):
                 try:
                     update_user(manage_user, status="Inactive")
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
                     st.warning(f"Deactivated '{manage_user}'.")
                     st.rerun()
                 except ValueError as exc:

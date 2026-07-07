@@ -159,14 +159,15 @@ def render():
             aadhar = st.text_input("Aadhar")
 
         if st.button("Save Employee", use_container_width=True):
-            if not full_name.strip():
-                st.error("Please enter the employee name before saving.")
-                return
+            try:
+                if not full_name.strip():
+                    st.error("Please enter the employee name before saving.")
+                    return
 
-            if not employee_id.strip():
-                employee_id = f"EMP{len(df) + 1:04d}"
+                if not employee_id.strip():
+                    employee_id = f"EMP{len(df) + 1:04d}"
 
-            new_employee = {
+                new_employee = {
                 "EmployeeID": employee_id,
                 "FullName": full_name,
                 "DOB": dob,
@@ -203,10 +204,17 @@ def render():
                 "Aadhar": aadhar,
             }
 
-            updated_df = pd.concat([df, pd.DataFrame([new_employee])], ignore_index=True)
-            save_employees(updated_df)
-            st.success("Employee Added Successfully")
-            st.rerun()
+                updated_df = pd.concat([df, pd.DataFrame([new_employee])], ignore_index=True)
+                save_employees(updated_df)
+                # refresh activity timestamp
+                try:
+                    st.session_state.login_started_at = time.time()
+                except Exception:
+                    pass
+                st.success("Employee Added Successfully")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Failed to add employee: {e}")
 
     with edit_tab:
         st.subheader("✏️ Edit Employee")
@@ -251,19 +259,26 @@ def render():
             submitted = st.form_submit_button("Update Employee")
 
         if submitted:
-            if not full_name.strip():
-                st.error("Employee name is required.")
-            else:
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "FullName"] = full_name
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "Phone"] = phone
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "Email"] = email
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "Designation"] = designation
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "EmploymentType"] = employment_type
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "ReportingManager"] = manager
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "WorkLocation"] = work_location
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "EmployeeStatus"] = status
-                df.loc[df["EmployeeID"].astype(str) == employee_id, "CTC"] = ctc
+            try:
+                if not full_name.strip():
+                    st.error("Employee name is required.")
+                else:
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "FullName"] = full_name
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Phone"] = phone
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Email"] = email
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "Designation"] = designation
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "EmploymentType"] = employment_type
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "ReportingManager"] = manager
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "WorkLocation"] = work_location
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "EmployeeStatus"] = status
+                    df.loc[df["EmployeeID"].astype(str) == employee_id, "CTC"] = ctc
 
-                save_employees(df)
-                st.success("Employee updated successfully!")
-                st.rerun()
+                    save_employees(df)
+                    try:
+                        st.session_state.login_started_at = time.time()
+                    except Exception:
+                        pass
+                    st.success("Employee updated successfully!")
+                    st.rerun()
+            except Exception as e:
+                st.error(f"Failed to update employee: {e}")

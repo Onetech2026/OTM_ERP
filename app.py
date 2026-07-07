@@ -21,12 +21,9 @@ st.set_page_config(
     layout="wide"
 )
 
-try:
-    from streamlit_autorefresh import st_autorefresh
-
-    st_autorefresh(interval=10000, key="inactivity_timer")
-except Exception:
-    st_autorefresh = None
+# Removed automatic refresh to avoid unexpected session reruns that
+# can interfere with session_state on some hosting platforms.
+st_autorefresh = None
 
 
 with open("assets/style.css") as f:
@@ -88,6 +85,12 @@ else:
             "⚙️ Settings"
         ]
     )
+
+    # Record navigation as user activity to prevent inactivity logout
+    try:
+        st.session_state.login_started_at = time.time()
+    except Exception:
+        pass
 
     st.sidebar.write("---")
     st.sidebar.write(
