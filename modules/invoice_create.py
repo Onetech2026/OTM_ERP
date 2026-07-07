@@ -141,6 +141,10 @@ def render():
         key="services_editor"
     )
 
+    for col in ["Rate", "HoursQty", "Amount"]:
+        if col in edited_df.columns:
+            edited_df[col] = pd.to_numeric(edited_df[col], errors="coerce").fillna(0)
+
     edited_df["Amount"] = (
         edited_df["Rate"] *
         edited_df["HoursQty"]
@@ -151,7 +155,7 @@ def render():
         use_container_width=True
     )
 
-    subtotal = edited_df["Amount"].sum()
+    subtotal = float(edited_df["Amount"].sum()) if not edited_df.empty else 0.0
 
     st.metric(
         "Invoice Total",

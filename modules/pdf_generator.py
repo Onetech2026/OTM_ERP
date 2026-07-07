@@ -112,6 +112,17 @@ def send_email_outlook(receiver_email, subject, body, pdf_path):
         st.error(f"Failed to send email via Outlook: {str(e)}")
         return False
 
+def _safe_number(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _safe_text(value):
+    return "" if value is None else str(value)
+
+
 def wrap_cell(pdf, width, height, text, border=1):
     # Calculate lines that fit in the cell
     lines = []
@@ -236,7 +247,7 @@ def generate_pdf(invoice):
 
         # Table rows with word wrap
         for s in services:
-            desc = str(s.get("Description", ""))
+            desc = _safe_text(s.get("Description", ""))
             current_y = pdf.get_y()
             
             # Get height needed for description
@@ -245,10 +256,10 @@ def generate_pdf(invoice):
             # Reset position and print other cells with matched height
             pdf.set_y(current_y)
             pdf.cell(60, row_height, "", border=0)  # Placeholder for description
-            pdf.cell(30, row_height, str(s.get("Unit", "")), border=1)
-            pdf.cell(30, row_height, f"{s.get('Rate', 0):,.2f}", border=1, align="R")
-            pdf.cell(30, row_height, f"{s.get('HoursQty', 0):,.2f}", border=1, align="R")
-            pdf.cell(30, row_height, f"{s.get('Amount', 0):,.2f}", border=1, ln=1, align="R")
+            pdf.cell(30, row_height, _safe_text(s.get("Unit", "")), border=1)
+            pdf.cell(30, row_height, f"{_safe_number(s.get('Rate', 0)):,.2f}", border=1, align="R")
+            pdf.cell(30, row_height, f"{_safe_number(s.get('HoursQty', 0)):,.2f}", border=1, align="R")
+            pdf.cell(30, row_height, f"{_safe_number(s.get('Amount', 0)):,.2f}", border=1, ln=1, align="R")
 
     # --- Expenses Table (only if expenses exist) ---
     expenses = invoice.get("Expenses", [])  # Changed from json.loads()
@@ -269,7 +280,7 @@ def generate_pdf(invoice):
         pdf.set_font("Arial", "", 11)
 
         for e in expenses:
-            desc = str(e.get("Description", ""))
+            desc = _safe_text(e.get("Description", ""))
             current_y = pdf.get_y()
             
             # Get height needed for description
@@ -278,10 +289,10 @@ def generate_pdf(invoice):
             # Reset position and print other cells with matched height
             pdf.set_y(current_y)
             pdf.cell(60, row_height, "", border=0)  # Placeholder for description
-            pdf.cell(30, row_height, str(e.get("Unit", "")), border=1)
-            pdf.cell(30, row_height, f"{e.get('Rate', 0):,.2f}", border=1, align="R")
-            pdf.cell(30, row_height, f"{e.get('Qty', 0):,.2f}", border=1, align="R")
-            pdf.cell(30, row_height, f"{e.get('Amount', 0):,.2f}", border=1, ln=1, align="R")
+            pdf.cell(30, row_height, _safe_text(e.get("Unit", "")), border=1)
+            pdf.cell(30, row_height, f"{_safe_number(e.get('Rate', 0)):,.2f}", border=1, align="R")
+            pdf.cell(30, row_height, f"{_safe_number(e.get('Qty', 0)):,.2f}", border=1, align="R")
+            pdf.cell(30, row_height, f"{_safe_number(e.get('Amount', 0)):,.2f}", border=1, ln=1, align="R")
 
     # --- Totals Section (aligned right) ---
     pdf.ln(5)
@@ -292,7 +303,7 @@ def generate_pdf(invoice):
 
     # Subtotal
     pdf.cell(label_width, 8, "Subtotal:", border=0, align="R")
-    pdf.cell(amount_width, 8, f"{invoice.get('Currency Symbol', '₹')} {invoice.get('Subtotal', 0):,.2f}", 
+    pdf.cell(amount_width, 8, f"{invoice.get('Currency Symbol', '₹')} {_safe_number(invoice.get('Subtotal', 0)):,.2f}", 
              border=0, ln=1, align="R")
     
     # Tax Rate
@@ -302,14 +313,14 @@ def generate_pdf(invoice):
     
     # Tax Due
     pdf.cell(label_width, 8, "Tax Due:", border=0, align="R")
-    pdf.cell(amount_width, 8, f"{invoice.get('Currency Symbol', '₹')} {invoice.get('Tax Due', 0):,.2f}", 
+    pdf.cell(amount_width, 8, f"{invoice.get('Currency Symbol', '₹')} {_safe_number(invoice.get('Tax Due', 0)):,.2f}", 
              border=0, ln=1, align="R")
     
     # Total (with line above)
     pdf.set_line_width(0.3)
     pdf.line(label_width - 40, pdf.get_y(), total_width, pdf.get_y())
     pdf.cell(label_width, 10, "Total:", border=0, align="R")
-    pdf.cell(amount_width, 10, f"{invoice.get('Currency Symbol', '₹')} {invoice.get('Total', 0):,.2f}", 
+    pdf.cell(amount_width, 10, f"{invoice.get('Currency Symbol', '₹')} {_safe_number(invoice.get('Total', 0)):,.2f}", 
              border=0, ln=1, align="R")
 
     # --- Comments ---
